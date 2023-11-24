@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Registration Form</title>
+</head>
+<body style="background: dimgrey;">
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col s12 m6 offset-m3 d-flex justify-content-center align-items-center">
+            <div class="card p-4 m-4">
+                <div class="card-content white-text">
+                    <span class="card-title">Регистрация</span>
+                    <form th:action="@{/auth/process_reg}" th:method="post" th:object="${user}">
+                        <div class="input-field d-flex justify-content-between gap-5">
+                            <label for="username" class="white-text">Имя:</label>
+                            <input type="text" id="username" name="username" th:field="*{username}" class="white-text" required>
+                            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="red-text"></span>
+                        </div>
+                        <div class="input-field d-flex justify-content-between gap-5 mb-4">
+                            <label for="password" class="white-text">Пароль:</label>
+                            <input type="password" id="password" name="password" th:field="*{password}" class="white-text" required>
+                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="red-text"></span>
+                        </div>
+                        <button type="submit" class="btn waves-effect waves-light btn-success">Регистрация</button>
+                        <a href="/auth/login" class="btn waves-effect waves-light green btn-primary">Авторизация</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
